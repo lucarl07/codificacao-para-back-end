@@ -28,40 +28,46 @@ document.getElementById('btnSubmit').addEventListener('click', () => {
 
    // Adiciona suas propriedades na array funcionarios:
    funcionarios.push({
-      código: codigoFuncionario.value,
+      codigo: codigoFuncionario.value,
       horas_trabalhadas: horasTrabalhadas.value,
       turno_trabalho: turnoTrabalho.value,
       categoria: categoria.value,
-      valor_hora: calcularValorHora(categoria.value, turnoTrabalho.value)
+      valor_hora: calcularValorHora(categoria.value, turnoTrabalho.value),
+      salario_inicial: calcularSalario(categoria.value, turnoTrabalho.value, horasTrabalhadas.value)
    })
 
    // console.log(`Quantidade de funcionários: ${qtdFuncionarios} \n`, funcionarios)
    const caixaFuncionario = document.createElement('div')
    caixaFuncionario.innerHTML = `
-      <p class="employee-id">
-         <strong>Código identificador:</strong>
-         ${funcionarios[indexAtual].código}
-      </p>
+      <div class="title-area">
+         <h2 class="employee-id">
+            Funcionário(a) ${funcionarios[indexAtual].codigo}
+         </h2>
+         <h3 class="worked-hours">
+            ${funcionarios[indexAtual].horas_trabalhadas} horas trabalhadas
+         </h3>
+      </div>
 
-      <p class="worked-hours">
-         <strong>Horas trabalhadas:</strong>
-         ${funcionarios[indexAtual].horas_trabalhadas}
-      </p>
+      <div class="attributes">
+         <div class="left-attributes">
+            <p class="work-shift">
+               <strong>Turno de trabalho:</strong>
+               ${funcionarios[indexAtual].turno_trabalho}
+            </p>
 
-      <p class="work-shift">
-         <strong>Turno de trabalho:</strong>
-         ${funcionarios[indexAtual].turno_trabalho}
-      </p>
-
-      <p class="category">
-         <strong>Categoria:</strong>
-         ${funcionarios[indexAtual].categoria}
-      </p>
-
-      <p class="salary-per-hour">
-         <strong>Valor-hora:</strong>
-         ${funcionarios[indexAtual].valor_hora}
-      </p>
+            <p class="category">
+               <strong>Categoria:</strong>
+               ${funcionarios[indexAtual].categoria}
+            </p>
+         </div>
+         
+         <div class="right-attributes">
+            <p class="hourly-rate">
+               <strong>Valor-hora:</strong>
+               ${funcionarios[indexAtual].valor_hora}
+            </p>
+         </div>
+      </div>
    `;
    
    caixaFuncionario.classList.add = 'card'
@@ -80,4 +86,10 @@ function calcularValorHora(categoria, turno) {
    } else if (categoria === 'O' && (turno === 'M' || turno === 'V')) {
       return salarioMinimo * 0.10;
    }
+}
+
+function calcularSalario(categoria, turno, horas) {
+   const valorHora = calcularValorHora(categoria, turno);
+
+   return valorHora * horas;
 }
