@@ -8,6 +8,41 @@
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
+    <section class="employee-data-input">
+        <h1 class="section-title">Digite as informações a seguir.</h1>
+
+        <form class="data-form" method="dialog">
+            <!--<label for="getEmployeeId">Código:</label>
+            <input type="text" name="getId" id="getEmployeeId">-->
+
+            <div class="form-field">
+                <label for="getEmployeeId">Identificador:</label>
+                <input type="text" name="getId" id="getEmployeeId" placeholder="Digite um código numérico...">
+            </div>
+
+            <div class="form-field">
+                <label for="getWorkedHours">Horas trabalhadas:</label>
+                <input type="text" name="getWorkedHours" id="getWorkedHours" placeholder="Digite as horas trabalhadas no mês...">
+            </div>
+
+            <div class="form-field">
+                <label for="getShift">Turno:</label>
+                <input type="text" name="getShift" id="getShift" placeholder="Digite uma inicial de turno (M, V ou N)...">
+            </div>
+
+            <div class="form-field">
+                <label for="getCategory">Categoria:</label>
+                <input type="text" name="getCategory" id="getCategory" placeholder="Digite uma inicial de categoria (G ou O)...">
+            </div>
+
+            <button id="btnSubmit" type="submit">Enviar dados</button>
+        </form>
+    </section>
+
+    <section class="employee-data-response">
+        <!---->
+    </section>
+
     <script src="./js/app.js"></script>
 </body>
 </html>

@@ -1,0 +1,55 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    width: 100vw;
+    max-width: 100vw;
+    height: 100vh;
+    max-height: 100vh;
+}
+
+.employee-data-input {
+    display: flex;
+    flex-direction: column;
+    padding: 2.5rem;
+    min-width: 300px;
+    width: 25vw;
+    gap: 2rem;
+    background-color: #587a78;
+    color: #d6d4d2;
+}
+.employee-data-input .section-title {
+    text-align: center;
+    font-size: 28px;
+}
+
+.data-form {
+    display: inherit;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+.data-form button {
+    align-self: center;
+    margin-top: 10px;
+    width: 160px;
+    height: 40px;
+    font-size: 14px;
+}
+
+.form-field {
+    display: inherit;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+.form-field label {
+    font-size: 20px;
+}
+.form-field input {
+    width: 100%;
+    height: 30px;
+    padding: 8px;
+}
