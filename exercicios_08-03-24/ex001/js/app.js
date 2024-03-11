@@ -32,8 +32,9 @@ document.getElementById('btnSubmit').addEventListener('click', () => {
       horas_trabalhadas: horasTrabalhadas.value,
       turno_trabalho: turnoTrabalho.value,
       categoria: categoria.value,
-      valor_hora: calcularValorHora(categoria.value, turnoTrabalho.value),
-      salario_inicial: calcularSalario(categoria.value, turnoTrabalho.value, horasTrabalhadas.value)
+      valor_hora: calcValorHora(categoria.value, turnoTrabalho.value),
+      salario_inicial: calcSalarioInicial(categoria.value, turnoTrabalho.value, horasTrabalhadas.value),
+      auxilio_alimentacao: calcAuxilioAlimentacao(categoria.value, turnoTrabalho.value, horasTrabalhadas.value)
    })
 
    // console.log(`Quantidade de funcionários: ${qtdFuncionarios} \n`, funcionarios)
@@ -74,7 +75,7 @@ document.getElementById('btnSubmit').addEventListener('click', () => {
    campoColaboradores.appendChild(caixaFuncionario);
 })
 
-function calcularValorHora(categoria, turno) {
+function calcValorHora(categoria, turno) {
    const salarioMinimo = 450;
 
    if (categoria === 'G' && turno === 'N') {
@@ -88,8 +89,20 @@ function calcularValorHora(categoria, turno) {
    }
 }
 
-function calcularSalario(categoria, turno, horas) {
-   const valorHora = calcularValorHora(categoria, turno);
+function calcSalarioInicial(categoria, turno, horas) {
+   const valorHora = calcValorHora(categoria, turno);
 
    return valorHora * horas;
+}
+
+function calcAuxilioAlimentacao(categoria, turno, horas) {
+   const salario = calcSalarioInicial(categoria, turno, horas)
+
+   if (salario <= 300) {
+      return salario * 0.20
+   } else if (salario > 300 && salario <= 600) {
+      return salario * 0.15
+   } else {
+      return salario * 0.05
+   }
 }
