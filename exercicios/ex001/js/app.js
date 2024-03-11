@@ -34,8 +34,10 @@ document.getElementById('btnSubmit').addEventListener('click', () => {
       categoria: categoria.value,
       valor_hora: calcValorHora(categoria.value, turnoTrabalho.value),
       salario_inicial: calcSalarioInicial(categoria.value, turnoTrabalho.value, horasTrabalhadas.value),
-      auxilio_alimentacao: calcAuxilioAlimentacao(categoria.value, turnoTrabalho.value, horasTrabalhadas.value)
+      auxilio_alimentacao: calcAuxilioAlim(categoria.value, turnoTrabalho.value, horasTrabalhadas.value),
+      salario_final: calcSalarioFinal(categoria.value, turnoTrabalho.value, horasTrabalhadas.value)
    })
+   console.log(funcionarios)
 
    // console.log(`Quantidade de funcionários: ${qtdFuncionarios} \n`, funcionarios)
    const caixaFuncionario = document.createElement('div')
@@ -89,13 +91,7 @@ function calcValorHora(categoria, turno) {
    }
 }
 
-function calcSalarioInicial(categoria, turno, horas) {
-   const valorHora = calcValorHora(categoria, turno);
-
-   return valorHora * horas;
-}
-
-function calcAuxilioAlimentacao(categoria, turno, horas) {
+function calcAuxilioAlim(categoria, turno, horas) {
    const salario = calcSalarioInicial(categoria, turno, horas)
 
    if (salario <= 300) {
@@ -106,3 +102,7 @@ function calcAuxilioAlimentacao(categoria, turno, horas) {
       return salario * 0.05
    }
 }
+
+const calcSalarioInicial = (categoria, turno, horas) => (calcValorHora(categoria, turno) * horas);
+
+const calcSalarioFinal = (categoria, turno, horas) => (calcSalarioInicial(categoria, turno, horas) + calcAuxilioAlim(categoria, turno, horas));
