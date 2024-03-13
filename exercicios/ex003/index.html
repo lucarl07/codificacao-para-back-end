@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt_BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consultório Odontológico</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <h1 class="title">Consultório Odontológico</h1>
+    
+    <div class="put-patients">
+        <span class="text">Paciente:</span>
+        <input type="text" id="inPaciente" autofocus>
+        <input type="button" value="Adicionar" id="btnAdicionar">
+        <input type="button" value="Urgência" id="btnUrgencia">
+        <input type="button" value="Atender" id="btnAtender">
+    </div>
+
+    <section class="patient-queue">
+        <h3 class="title">Em atendimento:</h3>
+        <pre class="list" id="outLista"></pre>
+    </section>
+
+    <script src="./js/app.js"></script>
+</body>
+</html>
