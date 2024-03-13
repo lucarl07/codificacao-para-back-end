@@ -20,22 +20,36 @@ const numSecreto = gerarNumeroAleatorio(100)
 // Valores no output:
 let erros = [], chances = parseInt(outChances.innerHTML);
 
-const adivinharNumero = () => {
+const validarNumero = () => {
     // Adicionar string de erro formatado e o número possível
     let formatarErr = '';
     let numPossivel = parseInt(inNumero.value);
 
     // Comparar o número secreto com o chute
     if (numSecreto !== numPossivel) {
-        validarNumero(formatarErr, numPossivel);
+        adivinharNumero(formatarErr, numPossivel);
+
+        // Caso as chances tenham acabado:
+        if (chances < 1) {
+            alert(`Suas chances acabaram... \nPor favor, tente novamente clicando em "Reiniciar o jogo".`)
+            outDica.innerHTML = `A resposta era ${numSecreto}.`
+    
+            // Desabilitar botão de apostar e encerrar a função
+            btnApostar.disabled = true;
+            return;
+        }
     } else {
-        alert(`Parabéns, você acertou! \nO número secreto é ${numPossivel}`)
+        // Revelar o número secreto:
+        alert(`Parabéns, você acertou! \nO número secreto é ${numPossivel}.`)
         outDica.innerHTML = `É o número ${numSecreto}!`
+
+        // Desabilitar botão de apostar e limpar input
+        btnApostar.disabled = true;
         inNumero.value = '';
-    }
+    }   
 }
 
-const validarNumero = (listaErros, chute) => {
+const adivinharNumero = (listaErros, chute) => {
     // Adicionar número errado na array "erros"
     erros.push(chute)
     listaErros = `(${erros.join(', ')})`
@@ -54,4 +68,4 @@ const validarNumero = (listaErros, chute) => {
     inNumero.value = '';
 }
 
-btnApostar.addEventListener('click', adivinharNumero)
+btnApostar.addEventListener('click', validarNumero)
