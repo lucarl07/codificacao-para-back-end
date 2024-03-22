@@ -28,30 +28,29 @@ const adicionarClube = () => {
     }
 
     allTeams.push(team)
-    inTeam.value = "";
+    inTeam.value = ""
+    inTeam.focus();
 }
 
 // Função para retornar todos os clubes adicionados:
 const listarClubes = () => {
-    outTeams.textContent = "";
-
     if (allTeams.length === 0) {
         alert('Erro: Número insuficiente de clubes. \nAdicione no mínimo 1 (um) time para visualizar a lista.')
         inTeam.focus()
         return;
     }
 
+    let list = '';
     allTeams.forEach((team, i) => {
-        outTeams.textContent += `${i+1}. ${team}\n`
+        return list += `${i+1}. ${team}\n`
     })
+
+    outTeams.textContent = list;
 }
 
 // Função para fazer as chaves com os clubes disponíveis:
 const chavearClubes = () => {
     let teams = allTeams.length;
-    let bracketLeft = [], bracketRight = [];
-    
-    outTeams.textContent = "";
     
     if (teams < 2) {
         alert('Erro: Número insuficiente de clubes. \nAdicione no mínimo 2 (dois) times para visualizar a lista.')
@@ -64,13 +63,18 @@ const chavearClubes = () => {
     }
 
     // Partir a array allTeams na metade em duas arrays:
-    bracketLeft = allTeams.slice(0, (teams / 2))
-    bracketRight = allTeams.slice((teams / 2)).reverse();
+    let bracketLeft = allTeams.slice(0, (teams / 2))
+    let bracketRight = allTeams.slice((teams / 2)).reverse();
 
-    let matches = teams / 2;
+    // Determinar o número de partidas e declarar a lista:
+    let matches = teams / 2
+    let list = '';
+
+    // Adicionar partidas à lista:
     for (let i = 0; i < matches; i++) {
-        outTeams.textContent += `${i+1}. ${bracketLeft[i]} x ${bracketRight[i]}\n`
+        list += `${i+1}. ${bracketLeft[i]} x ${bracketRight[i]}\n`
     }
+    outTeams.textContent = list;
 }
 
 // Adicionar detectores de evento aos botões:
