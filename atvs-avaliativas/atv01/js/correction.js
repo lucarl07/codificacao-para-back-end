@@ -22,6 +22,13 @@ const adicionarClube = () => {
 }
 btnAdicionar.addEventListener('click', adicionarClube)
 
+// NÃO-FUNCIONAL | Adicionar detector do evento keypress:
+inClube.addEventListener('keypress', (e) => {
+    if(e.key === 'Enter') {
+        adicionarClube();
+    }
+})
+
 const listarClubes = () => {
     if (clubes.length === 0) {
         alert('Não existem clubes cadastrados!')
