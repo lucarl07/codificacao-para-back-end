@@ -1,0 +1,19 @@
+form input {
+    width: 200px;
+}
+form input[type="button"] {
+    width: 125px;
+}
+
+#outNoticias {
+    margin-top: 1rem;
+}
+article {
+    max-width: 500px;
+    padding: 2rem;
+    border: 1px solid black;
+}
+article h1 {
+    font-size: 1.75rem;
+    margin: 0 0 0.75rem;
+}
