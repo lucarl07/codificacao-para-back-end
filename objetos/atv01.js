@@ -21,7 +21,7 @@ const getRouteSchedule = (id) => {
     arrival = busSchedule.map(obj => obj.chegada).join(' | '),
     departure = busSchedule.map(obj => obj.saida).join(' | ');
 
-    console.log(`HORÁRIOS DE CHEGADA: \n${arrival} \nHORÁRIOS DE SAÍDA: \n${departure}`)    
+    console.log(`HORÁRIOS DE SAÍDA: \n${departure} \nHORÁRIOS DE CHEGADA: \n${arrival}`)    
 }
 
 // Chamando a função:
