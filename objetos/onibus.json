@@ -1,0 +1,122 @@
+{
+    "empresa": "Viação Rápida",
+    "linhas": [
+        {
+            "horarios": [
+                {
+                    "chegada": "06:30",
+                    "saida": "06:00"
+                },
+                {
+                    "chegada": "07:30",
+                    "saida": "07:00"
+                }
+            ],
+            "id": 1,
+            "nome": "Expresso Centro",
+            "paradas": [
+                {
+                    "id": 101,
+                    "latitude": -9.6658,
+                    "longitude": -35.7359,
+                    "nome": "Terminal Central",
+                    "ordem": 1
+                },
+                {
+                    "id": 102,
+                    "latitude": -9.6675,
+                    "longitude": -35.731,
+                    "nome": "Praça da Faculdade",
+                    "ordem": 2
+                },
+                {
+                    "id": 103,
+                    "latitude": -9.6692,
+                    "longitude": -35.727,
+                    "nome": "Estação Rodoviária",
+                    "ordem": 3
+                },
+                {
+                    "id": 104,
+                    "latitude": -9.671,
+                    "longitude": -35.7225,
+                    "nome": "Avenida Principal",
+                    "ordem": 4
+                }
+            ]
+        },
+        {
+            "horarios": [
+                {
+                    "chegada": "08:45",
+                    "saida": "08:00"
+                },
+                {
+                    "chegada": "09:45",
+                    "saida": "09:00"
+                }
+            ],
+            "id": 2,
+            "nome": "Circular Praias",
+            "paradas": [
+                {
+                    "id": 201,
+                    "latitude": -9.6495,
+                    "longitude": -35.7081,
+                    "nome": "Terminal Jatiúca",
+                    "ordem": 1
+                },
+                {
+                    "id": 202,
+                    "latitude": -9.6506,
+                    "longitude": -35.7024,
+                    "nome": "Parque Shopping",
+                    "ordem": 2
+                },
+                {
+                    "id": 203,
+                    "latitude": -9.6575,
+                    "longitude": -35.7089,
+                    "nome": "Praia da Pajuçara",
+                    "ordem": 3
+                },
+                {
+                    "id": 204,
+                    "latitude": -9.6612,
+                    "longitude": -35.7042,
+                    "nome": "Praia de Ponta Verde",
+                    "ordem": 4
+                }
+            ]
+        }
+    ],
+    "onibus": [
+        {
+            "ano_fabricacao": 2019,
+            "id": "A100",
+            "linha": 1,
+            "modelo": "Volvo B340M",
+            "motorista": "José da Silva",
+            "placa": "ABC-1234",
+            "status": "em operação"
+        },
+        {
+            "ano_fabricacao": 2018,
+            "id": "A101",
+            "linha": 2,
+            "modelo": "Scania K310",
+            "motorista": null,
+            "placa": "DEF-5678",
+            "status": "em manutenção"
+        },
+        {
+            "ano_fabricacao": 2020,
+            "id": "A102",
+            "linha": 1,
+            "modelo": "Mercedes-Benz O500U",
+            "motorista": "Maria Oliveira",
+            "placa": "GHI-9012",
+            "status": "em operação"
+        }
+    ]
+}
