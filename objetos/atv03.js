@@ -1,4 +1,4 @@
-/** ATIVIDADE 03
+/** ATIVIDADE 03 - Listar todas as paradas de uma linha
  * Proposta: Escreva uma função que aceite o ID da linha como entrada e retorne todas as paradas associadas a essa linha, ordenadas pela ordem de parada.
  */
 

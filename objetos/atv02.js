@@ -1,4 +1,4 @@
-/** ATIVIDADE 02
+/** ATIVIDADE 02 - Verificar disponibilidade de ônibus por linha
  * Proposta: Implemente uma função que mostre quantos ônibus estão disponíveis para uma determinada linha.
 */
 
