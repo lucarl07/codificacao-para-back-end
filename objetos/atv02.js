@@ -17,17 +17,17 @@ const getRouteBuses = (id) => {
         return;
     }
 
-    let aboutBuses = `===== LINHA ${id} =====\n`;
+    let count = 0;
 
-    buses.forEach((bus, i) => {
-        aboutBuses += `||| Ônibus ${bus.id} ||| \nModelo: ${bus.modelo} | Placa: ${bus.placa} \nMotorista: ${bus.motorista} | Status: ${bus.status}`
-
-        if (i !== buses.length - 1) {
-            aboutBuses += `\n\n`
+    buses.forEach(bus => {
+        if (bus.status === 'em operação') {
+            count++
         }
-    })
+    });
 
-    console.log(aboutBuses)
+    let listAllStatus = count === 0 ? 'não há nenhum ônibus em operação.' : `há ${count} ônibus em operação.`
+
+    console.log(`No momento, ${listAllStatus}`)
 }
 
 // Chamando a função:

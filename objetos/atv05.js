@@ -6,29 +6,23 @@
 const data = require('./onibus.json')
 
 // Declarando o ID da linha de ônibus a ser pesquisada:
-const busRouteId = 1;
+const busId = 'A100';
 
 // Função para ver a disponibilidade de ônibus em uma linha:
 const getRouteBuses = (id) => {
-    const buses = data.onibus.filter(bus => bus.linha === id);
+    const bus = data.onibus.find(vehicle => vehicle.id === id)
 
-    if (buses.length === 0) {
-        console.log('Não há ônibus para a linha especificada.')
-        return;
+    // Caso o ID inserido seja inválido:
+    if (bus === undefined) {
+        throw new Error('ID erroneamente digitado, ou ônibus inexistente.')
     }
 
-    let aboutBuses = `===== LINHA ${id} =====\n`;
+    const info = `===== ÔNIBUS ${id} ===== \n - Modelo: ${bus.modelo} \n - Placa: ${bus.placa} \n - Motorista: ${bus.motorista} \n - Status: ${bus.status}`
 
-    buses.forEach((bus, i) => {
-        aboutBuses += `||| Ônibus ${bus.id} ||| \nModelo: ${bus.modelo} | Placa: ${bus.placa} \nMotorista: ${bus.motorista} | Status: ${bus.status}`
-
-        if (i !== buses.length - 1) {
-            aboutBuses += `\n\n`
-        }
-    })
-
-    console.log(aboutBuses)
+    console.log(info)
 }
 
 // Chamando a função:
-getRouteBuses(busRouteId);
+getRouteBuses(busId);
+
+// `||| Ônibus ${bus.id} ||| \nModelo: ${bus.modelo} | Placa: ${bus.placa} \nMotorista: ${bus.motorista} | Status: ${bus.status}`
