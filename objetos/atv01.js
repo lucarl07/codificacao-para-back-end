@@ -24,5 +24,5 @@ const getRouteSchedule = (id) => {
     console.log(`HORÁRIOS DE CHEGADA: \n${arrival} \nHORÁRIOS DE SAÍDA: \n${departure}`)    
 }
 
-// Chamando a função mencionada acima:
+// Chamando a função:
 getRouteSchedule(busRouteId);

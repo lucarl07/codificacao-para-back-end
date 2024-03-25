@@ -27,4 +27,5 @@ const getBusStops = (id) => {
     console.log(aboutStops)
 }
 
+// Chamando a função:
 getBusStops(busRouteId);
