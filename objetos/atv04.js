@@ -12,6 +12,7 @@ const busStatus = "em operação";
 const getBusesByStatus = (status) => {
     const buses = data.onibus.filter(bus => bus.status === status);
     
+    // Caso não houver nenhum ônibus no status inserido:
     if (buses.length === 0) {
         console.log('Não há ônibus no status operacional especificado.')
         return;

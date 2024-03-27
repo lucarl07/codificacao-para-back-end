@@ -11,7 +11,8 @@ const busRouteId = 1;
 // Função para ver a disponibilidade de ônibus em uma linha:
 const getRouteBuses = (id) => {
     const buses = data.onibus.filter(bus => bus.linha === id);
-
+    
+    // Caso o ID inserido seja inválido:
     if (buses.length === 0) {
         console.log('Não há ônibus para a linha especificada.')
         return;

@@ -20,7 +20,7 @@ const getBusStops = (id) => {
     const busStops = busRoute.paradas;
     let aboutStops = `===== LINHA ${id} =====\n`;
 
-    busStops.forEach((stop, i) => {
+    busStops.forEach(stop => {
         aboutStops += `${stop.ordem}. ${stop.nome} (${stop.id}) \n\tX: ${stop.latitude} \n\tY: ${stop.longitude}\n`
     })
 
