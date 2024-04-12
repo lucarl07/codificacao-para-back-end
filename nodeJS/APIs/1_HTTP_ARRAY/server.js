@@ -89,8 +89,27 @@ const server = http.createServer((request, response) => {
       }
     });
 
-  } else if (true) { // Deletar um usuário
-    //
+  } else if (method === "DELETE" && url.startsWith("/delete_user/")) { // Deletar um usuário
+    
+    /** CÓDIGO NÃO-FUNCIONAL:
+     * const userId = url.split('/')[2]
+     * console.log(`Usuário a ser apagado: ${userId}`);
+     * 
+     * const index = users.findIndex(user => user.id == userId);
+     * 
+     * if (index !== -1) {
+     *   users = users.slice(0, index) + users.slice(index + 1);
+     *   response.setHeader('Content-Type', 'application/json')
+     *   response.end(JSON.stringify({
+     *     message: `Usuário ${index} apagado com sucesso.`,
+     *     check_users: `Acesse GET http://localhost:4010/users para ver os usuários disponíveis.`
+     *   }));
+     * } else {
+     *   response.writeHead(404, {"Content-Type": "application/json"})
+     *   response.end(JSON.stringify({message: `Erro ao tentar remover o usuário ${index}.`}));
+     * }
+     */
+
   } else { // Recurso não encontrado.
     //
   }
