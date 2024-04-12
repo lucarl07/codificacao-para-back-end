@@ -1,4 +1,4 @@
-import http from 'node:http';
+import http, { get } from 'node:http';
 
 // Métodos: GET, POST, PUT, PATH, DELETE
 /** REQUISIÇÃO
@@ -16,29 +16,7 @@ import http from 'node:http';
 // Códigos:
 const PORT = 4010
 
-const users = [
-  {
-    name: 'Fulano de Tal',
-    age: 21,
-    city: 'Maceió',
-    state: 'Alagoas',
-    id: '3478975'
-  },
-  {
-    name: 'Ciclano de Tal',
-    age: 17,
-    city: 'Arapiraca',
-    state: 'Alagoas',
-    id: '7276109'
-  },
-  {
-    name: 'Maria das Graças',
-    age: 33,
-    city: 'Aracajú',
-    state: 'Sergipe',
-    id: '6804847'
-  },
-];
+const users = [];
 
 const server = http.createServer((request, response) => {
   const { method, url } = request;
@@ -48,8 +26,24 @@ const server = http.createServer((request, response) => {
     response.setHeader("Content-Type", "application/json");
     response.end(JSON.stringify(users));
 
-  } else if (false) { // Buscar um único usuário
-    //
+  } else if (method === "GET" && url.startsWith("/users/")) { // Buscar um único usuário
+    
+    const userId = url.split('/')[2]
+    console.log(`Usuário pesquisado: ${userId}`)
+
+    const user = users.find(user => user.id == userId);
+    
+    if (user) {
+      response.setHeader("Content-Type", "application/json")
+      response.end(JSON.stringify(user));
+    } else {
+      response.writeHead(404, {"Content-Type": "application/json"})
+      response.end(JSON.stringify({ 
+        name: "Troll Shah", 
+        message: `Usuário ${userId} não encontrado.`
+      }));
+    }
+
   } else if (method === "POST" && url === "/users") { // Cadastrar um usuário
     
     let body = '';
@@ -60,7 +54,7 @@ const server = http.createServer((request, response) => {
     
     request.on('end', () => {
       const newUser = JSON.parse(body)
-      newUser.id = ((Math.random() * 8999999) + 1000000).toFixed(0);
+      newUser.id = users.length + 1;
       
       users.push(newUser)
       response.writeHead(201, {
@@ -70,8 +64,31 @@ const server = http.createServer((request, response) => {
       response.end(JSON.stringify(newUser));
     })
 
-  } else if (false) { // Atualizar um usuário
-    //
+  } else if (method === "PUT" && url.startsWith("/update_user/")) { // Atualizar um usuário
+
+    const userId = url.split('/')[2]
+    console.log(`Usuário a atualizar: ${userId}`);
+    
+    let body = '';
+
+    request.on("data", (chunk) => {
+      body += chunk.toString()
+    });
+
+    request.on("end", () => {
+      const updateUser = JSON.parse(body)
+      const index = users.findIndex(user => user.id == userId)
+
+      if (index !== -1) {
+        users[index] = {...users[index], updateUser}
+        response.setHeader('Content-Type', 'application/json')
+        response.end(JSON.stringify(users[index]));
+      } else {
+        response.writeHead(404, {"Content-Type": "application/json"})
+        response.end(JSON.stringify({message: `Erro ao tentar atualizar o usuário ${index}.`}));
+      }
+    });
+
   } else if (true) { // Deletar um usuário
     //
   } else { // Recurso não encontrado.
