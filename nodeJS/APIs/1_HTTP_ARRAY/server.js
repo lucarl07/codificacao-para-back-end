@@ -44,8 +44,10 @@ const server = http.createServer((request, response) => {
   const { method, url } = request;
 
   if (method === "GET" && url === "/users") { // Buscar todos os usuários
+
     response.setHeader("Content-Type", "application/json");
     response.end(JSON.stringify(users));
+
   } else if (false) { // Buscar um único usuário
     //
   } else if (method === "POST" && url === "/users") { // Cadastrar um usuário
@@ -68,9 +70,9 @@ const server = http.createServer((request, response) => {
       response.end(JSON.stringify(newUser));
     })
 
-  } else if (true) { // Atualizar um usuário
+  } else if (false) { // Atualizar um usuário
     //
-  } else if (false) { // Deletar um usuário
+  } else if (true) { // Deletar um usuário
     //
   } else { // Recurso não encontrado.
     //
