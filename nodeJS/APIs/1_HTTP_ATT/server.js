@@ -1,3 +1,5 @@
+import nodeCluster from 'node:cluster';
+import { count } from 'node:console';
 import http, { request } from 'node:http'
 
 const PORT = 3020
@@ -8,23 +10,53 @@ const server = http.createServer((req, res) => {
   const {url, method} = req
   console.log('URL:', url)
 
-  if (url === '/participants' && method === 'GET') {
-    // Get all participants:
+  if (url === '/participants' && method === 'GET') { // Get all participants:
+    
     console.log('GET participants \n')
     res.setHeader('Content-Type', 'application/json')
     res.end(JSON.stringify(participants));
 
-  } else if (url === '/participants/count' && method === 'GET') {
-    // Obter o número de participantes:
+  } else if (url === '/participants/count' && method === 'GET') { // Get the amount of participants:
+    
     console.log('GET participants/count')
+    const nOfPart = participants.length;
+    
+    res.setHeader('Content-Type', 'application/json')
+    res.end(JSON.stringify({"Quantidade total de participantes": nOfPart}))
 
-  } else if (url === '/participants/count/over18' && method === 'GET') {
-    // Obter o número de participantes maiores de idade (≥18 anos):
-    console.log('GET participants/count/over18')
+  } else if (url === '/participants/count/legal_aged' && method === 'GET') { // Get the amount of legal age participants:
+    
+    console.log('GET participants/count/legal_aged')
+    const legalAgeParts = participants.filter(part => part.age >= 18)
+    const nOfLegalAgeParts = legalAgeParts.length;
+    
+    res.setHeader('Content-Type', 'application/json')
+    res.end(JSON.stringify({"Quantidade de maiores de idade": nOfLegalAgeParts}));
 
-  } else if (url === '/participants/city/most' && method === 'GET') {
-    // Obter a cidade com o maior número de participantes:
+  } else if (url === '/participants/city/most' && method === 'GET') { // Get the city with the most participants:
+    
     console.log('GET participants/city/most')
+    const countCity = participants.reduce((acc, part) => {
+      acc[part.city] = (acc[part.city] || 0) + 1
+      return acc;
+    }, {})
+    
+    let nOfParts = 0
+    let cityWMostParts = '';
+
+    Object.entries(countCity).forEach(([city, count]) => {
+      if (count > nOfParts) {
+        nOfParts = count
+        cityWMostParts = city
+      }
+    });
+    
+    res.setHeader('Content-Type', 'application/json')
+    res.end(JSON.stringify({
+      "Quantidade total de partiicpantes": participants.length,
+      "Cidade com maior número de participantes": cityWMostParts,
+      "Participantes desta cidade": nOfParts
+    }))
 
   } else if (url.startsWith('/participants/') && method === 'GET') {
     // Obter um participante em específico:
