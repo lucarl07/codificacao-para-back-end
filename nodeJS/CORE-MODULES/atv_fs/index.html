@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LucApp</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            /* margin: 0; */
+            /* padding: 0; */
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+
+        form {
+            display: inherit;
+            flex-direction: inherit;
+            width: 240px;
+            gap: .75rem;
+        }
+
+        form input[type="submit"] {
+            align-self: center;
+            width: 120px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Cadastrar usuários</h1>
+    <!-- http://localhost:5030/ -->
+    <form action="/" method="get">
+        <input type="text" name="name" placeholder="Digite seu nome">
+        <input type="text" name="email" placeholder="Digite seu e-mail">
+        <input type="password" name="first_pw" placeholder="Digite sua senha">
+        <input type="submit" value="Criar uma conta">
+    </form>
+</body>
+</html>
